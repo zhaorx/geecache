@@ -30,7 +30,7 @@ func NewHTTPPool(self string) *HTTPPool {
 
 // ServeHTTP handle all http requests
 func (p *HTTPPool) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if strings.HasPrefix(r.URL.Path, defaultBasePath) {
+	if !strings.HasPrefix(r.URL.Path, p.basePath) {
 		panic("HTTPPool serving unexpected path: " + r.URL.Path)
 	}
 
